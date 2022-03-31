@@ -64,6 +64,7 @@ class HabitDetailsViewController: UITableViewController {
         }
         return cell
     }
+    
     private func configureNavigationBar() {
         let rightButton = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(edit))
         navigationItem.title = habit.name

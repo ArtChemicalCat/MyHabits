@@ -9,7 +9,7 @@ import UIKit
 
 class InfoViewController: UIViewController {
 //MARK: - Views
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,12 +59,14 @@ extension InfoViewController: UITableViewDelegate {
             
             return title
         }()
+        
         let header: UIView = {
             let header = UIView()
             header.addSubview(title)
             
             return header
         }()
+        
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: header.topAnchor, constant: 22),
             title.leadingAnchor.constraint(equalTo: header.leadingAnchor),
@@ -73,6 +75,7 @@ extension InfoViewController: UITableViewDelegate {
         
         return header
     }
+    
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         false
     }

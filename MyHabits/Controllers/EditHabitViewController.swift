@@ -65,7 +65,6 @@ class EditHabitViewController: HabitViewController {
             self.navigationController?.popToRootViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
-        
     }
     
 }
