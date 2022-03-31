@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class HabitsViewController: UIViewController {
+    private var subscriptions = Array<AnyCancellable>()
 //MARK: - Views
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -24,11 +26,12 @@ class HabitsViewController: UIViewController {
 //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureController()
-        navigationItem.title = "Сегодня"
-        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewHabit))
-        navigationItem.rightBarButtonItem = addButton
+        
+        HabitsStore.shared.objectWillChange.sink { _ in
+            self.collectionView.reloadData()
+        }
+        .store(in: &subscriptions)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,8 +48,11 @@ class HabitsViewController: UIViewController {
     
 //MARK: - Layout
     private func configureController() {
-        view.addSubview(collectionView)
+        navigationItem.title = "Сегодня"
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewHabit))
+        navigationItem.rightBarButtonItem = addButton
         
+        view.addSubview(collectionView)
         collectionView.fillParentView()
     }
     
