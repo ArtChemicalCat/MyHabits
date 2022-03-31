@@ -11,9 +11,11 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     var progress = HabitsStore.shared.todayProgress {
         didSet {
-            progressLabel.text = "\(Int(progress * 100))%"
-            progressBarTrailingConstraint.constant = -(contentView.bounds.width - 24) * CGFloat(1-progress)
-            self.layoutIfNeeded()
+            UIView.animate(withDuration: 0.5, delay: 0) { [unowned self] in
+                self.progressLabel.text = "\(Int(self.progress * 100))%"
+                self.progressBarTrailingConstraint.constant = -(self.contentView.bounds.width - 24) * CGFloat(1-self.progress)
+                self.layoutIfNeeded()
+            }
         }
     }
     
@@ -32,7 +34,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     private lazy var progressLabel: UILabel = {
         let label = UILabel()
-//        label.text = "\(Int(progress * 100))%"
         label.textColor = .systemGray
         label.font = .systemFont(ofSize: 13, weight: .regular)
         

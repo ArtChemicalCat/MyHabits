@@ -34,13 +34,7 @@ class HabitViewController: UIViewController {
         
         return label
     }()
-    
-//    var colorButton: UIButton = {
-//        let button = UIButton.systemButton(with: UIImage(systemName: "circle.fill")!, target: self, action: #selector(chooseColor))
-//        button.tintColor = UIColor(named: "orange")
-//        return button
-//    }()
-    
+        
     lazy var colorButton: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "circle.fill")

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 /// Класс для хранения данных о привычке.
 public final class Habit: Codable {
@@ -94,13 +95,13 @@ extension Habit: Equatable {
 }
 
 /// Класс для сохранения и изменения привычек пользователя.
-public final class HabitsStore {
+public final class HabitsStore: ObservableObject {
     
     /// Синглтон для изменения состояния привычек из разных модулей.
     public static let shared: HabitsStore = .init()
     
     /// Список привычек, добавленных пользователем. Добавленные привычки сохраняются в UserDefaults и доступны после перезагрузки приложения.
-    public var habits: [Habit] = [] {
+    @Published public var habits: [Habit] = [] {
         didSet {
             save()
         }
@@ -157,6 +158,7 @@ public final class HabitsStore {
     /// - Parameter habit: Привычка, в которую добавится новая дата.
     public func track(_ habit: Habit) {
         habit.trackDates.append(.init())
+        objectWillChange.send()
         save()
     }
     
