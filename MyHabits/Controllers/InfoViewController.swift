@@ -24,6 +24,7 @@ class InfoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
 
@@ -37,8 +38,13 @@ class InfoViewController: UIViewController {
         view.addSubview(tableView)
         navigationItem.title = "Информация"
         tableView.separatorStyle = .none
-        tableView.fillParentView()
-//        navigationController?.navigationBar.backgroundColor = UIColor(red: 255/249, green: 255/249, blue: 255/249, alpha: 0.94)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.readableContentGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.readableContentGuide.bottomAnchor)
+        ])
     }
 }
 
@@ -49,7 +55,7 @@ extension InfoViewController: UITableViewDelegate {
             let title = UILabel()
             title.translatesAutoresizingMaskIntoConstraints = false
             title.text = "Привычка за 21 день"
-            title.font = UIFont(name: "SFProDisplay-Semibold", size: 20)
+            title.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
             
             return title
         }()
@@ -61,8 +67,8 @@ extension InfoViewController: UITableViewDelegate {
         }()
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: header.topAnchor, constant: 22),
-            title.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16),
-            title.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -16),
+            title.leadingAnchor.constraint(equalTo: header.leadingAnchor),
+            title.bottomAnchor.constraint(equalTo: header.bottomAnchor),
         ])
         
         return header

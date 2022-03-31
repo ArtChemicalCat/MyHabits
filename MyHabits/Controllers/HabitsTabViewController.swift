@@ -23,7 +23,6 @@ class HabitsTabViewController: UITabBarController {
         infoTab.tabBarItem.title = "Привычки"
         view.layer.backgroundColor = UIColor(red: 0.949, green: 0.949, blue: 0.969, alpha: 1).cgColor
         tabBar.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 0.8)
-        tabBar.tintColor = UIColor(named: "purple")
         setViewControllers([habitsTab, infoTab], animated: true)
     }
 }

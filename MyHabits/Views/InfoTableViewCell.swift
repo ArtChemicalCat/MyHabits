@@ -24,8 +24,8 @@ final class InfoTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: label.topAnchor, constant: -6),
             contentView.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: 6),
-            contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16),
-            contentView.leadingAnchor.constraint(equalTo: label.leadingAnchor, constant: -16)
+            contentView.trailingAnchor.constraint(equalTo: label.trailingAnchor),
+            contentView.leadingAnchor.constraint(equalTo: label.leadingAnchor)
         ])
         
     }
