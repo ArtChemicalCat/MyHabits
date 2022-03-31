@@ -70,7 +70,7 @@ extension InfoViewController: UITableViewDelegate {
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: header.topAnchor, constant: 22),
             title.leadingAnchor.constraint(equalTo: header.leadingAnchor),
-            title.bottomAnchor.constraint(equalTo: header.bottomAnchor),
+            title.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -16),
         ])
         
         return header
