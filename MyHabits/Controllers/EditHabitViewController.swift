@@ -46,7 +46,9 @@ class EditHabitViewController: HabitViewController {
     }
     
     @objc private func updateHabit() {
-        habit?.name = habitName!
+        guard let name = habitName,
+              name.count > 0 else { return }
+        habit?.name = name
         habit?.date = timePicker.date
         habit?.color = colorButton.tintColor!
         HabitsStore.shared.save()

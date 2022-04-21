@@ -28,7 +28,7 @@ class HabitDetailsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        HabitsStore.shared.dates.count - 1
     }
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
@@ -45,22 +45,19 @@ class HabitDetailsViewController: UITableViewController {
         formatter.dateFormat = "d MMMM yyyy"
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseID")
+        let dateIndex = HabitsStore.shared.dates.endIndex - 2 - indexPath.row
+        let date = HabitsStore.shared.dates[dateIndex]
         
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "Вчера"
-            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: Date.now.advanced(by: -86400 * 1)) ? .checkmark : .none
+            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: date) ? .checkmark : .none
         case 1:
             cell.textLabel?.text = "Позавчера"
-            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: Date.now.advanced(by: -86400 * 2)) ? .checkmark : .none
-        case 2:
-            cell.textLabel?.text = formatter.string(from: Date.now.advanced(by: -86400 * 3))
-            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: Date.now.advanced(by: -86400 * 3)) ? .checkmark : .none
-        case 3:
-            cell.textLabel?.text = formatter.string(from: Date.now.advanced(by: -86400 * 4))
-            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: Date.now.advanced(by: -86400 * 4)) ? .checkmark : .none
+            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: date) ? .checkmark : .none
         default:
-            break
+            cell.textLabel?.text = formatter.string(from: date)
+            cell.accessoryType = HabitsStore.shared.habit(habit, isTrackedIn: date) ? .checkmark : .none
         }
         return cell
     }

@@ -14,7 +14,6 @@
 		2420643827F2311800A5D9F9 /* HabitsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420643527F2311800A5D9F9 /* HabitsTabViewController.swift */; };
 		2420643927F2311800A5D9F9 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420643627F2311800A5D9F9 /* HabitsViewController.swift */; };
 		2420643A27F2311800A5D9F9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420643727F2311800A5D9F9 /* InfoViewController.swift */; };
-		2420643C27F2314800A5D9F9 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420643B27F2314800A5D9F9 /* InfoTableViewCell.swift */; };
 		2420643E27F2315E00A5D9F9 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420643D27F2315E00A5D9F9 /* HabitsStore.swift */; };
 		2420644227F2318600A5D9F9 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420644027F2318600A5D9F9 /* Constant.swift */; };
 		2420644327F2318600A5D9F9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420644127F2318600A5D9F9 /* UIView+Extension.swift */; };
@@ -22,7 +21,6 @@
 		246688CE27F448BB008E1D98 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246688CD27F448BB008E1D98 /* ProgressCollectionViewCell.swift */; };
 		246688D027F4493B008E1D98 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246688CF27F4493B008E1D98 /* HabitCollectionViewCell.swift */; };
 		246688D227F491A8008E1D98 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246688D127F491A8008E1D98 /* HabitDetailsViewController.swift */; };
-		246688D427F4A706008E1D98 /* HabitDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246688D327F4A706008E1D98 /* HabitDetailTableViewCell.swift */; };
 		246688D627F4BB95008E1D98 /* EditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246688D527F4BB95008E1D98 /* EditHabitViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +34,6 @@
 		2420643527F2311800A5D9F9 /* HabitsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitsTabViewController.swift; sourceTree = "<group>"; };
 		2420643627F2311800A5D9F9 /* HabitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		2420643727F2311800A5D9F9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		2420643B27F2314800A5D9F9 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		2420643D27F2315E00A5D9F9 /* HabitsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
 		2420644027F2318600A5D9F9 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		2420644127F2318600A5D9F9 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -44,7 +41,6 @@
 		246688CD27F448BB008E1D98 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		246688CF27F4493B008E1D98 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		246688D127F491A8008E1D98 /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
-		246688D327F4A706008E1D98 /* HabitDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailTableViewCell.swift; sourceTree = "<group>"; };
 		246688D527F4BB95008E1D98 /* EditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,10 +106,8 @@
 		2420643327F2308C00A5D9F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2420643B27F2314800A5D9F9 /* InfoTableViewCell.swift */,
 				246688CD27F448BB008E1D98 /* ProgressCollectionViewCell.swift */,
 				246688CF27F4493B008E1D98 /* HabitCollectionViewCell.swift */,
-				246688D327F4A706008E1D98 /* HabitDetailTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,7 +205,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				246688D227F491A8008E1D98 /* HabitDetailsViewController.swift in Sources */,
-				246688D427F4A706008E1D98 /* HabitDetailTableViewCell.swift in Sources */,
 				246688CE27F448BB008E1D98 /* ProgressCollectionViewCell.swift in Sources */,
 				2420643E27F2315E00A5D9F9 /* HabitsStore.swift in Sources */,
 				2420641E27F22ECC00A5D9F9 /* AppDelegate.swift in Sources */,
@@ -220,7 +213,6 @@
 				2420644327F2318600A5D9F9 /* UIView+Extension.swift in Sources */,
 				2420644227F2318600A5D9F9 /* Constant.swift in Sources */,
 				2420643827F2311800A5D9F9 /* HabitsTabViewController.swift in Sources */,
-				2420643C27F2314800A5D9F9 /* InfoTableViewCell.swift in Sources */,
 				2420644527F3461000A5D9F9 /* HabitViewController.swift in Sources */,
 				2420643927F2311800A5D9F9 /* HabitsViewController.swift in Sources */,
 				2420643A27F2311800A5D9F9 /* InfoViewController.swift in Sources */,

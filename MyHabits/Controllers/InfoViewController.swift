@@ -8,90 +8,78 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    
 //MARK: - Views
-    private let titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.text = "Привычка за 21 день"
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.id)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .clear
-        tableView.showsVerticalScrollIndicator = false
-        return tableView
+    private var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alwaysBounceVertical = true
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.spacing = 12
+        return stackView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpStackView()
         layout()
     }
     
 //MARK: - Layout
     private func layout() {
-        view.addSubview(tableView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(stackView)
         navigationItem.title = "Информация"
-        tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.readableContentGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.readableContentGuide.bottomAnchor)
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 22),
+            titleLabel.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            scrollView.topAnchor.constraint(equalTo: view.readableContentGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.readableContentGuide.bottomAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.readableContentGuide.widthAnchor)
         ])
     }
-}
-
-//MARK: - UITableViewDelegate
-extension InfoViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let title: UILabel = {
-            let title = UILabel()
-            title.translatesAutoresizingMaskIntoConstraints = false
-            title.text = "Привычка за 21 день"
-            title.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-            
-            return title
+    
+    private func setUpStackView() {
+        stackView.addArrangedSubview(makeLabel(withText: Constant.stepsDescription))
+        
+        Constant.habitSteps.forEach { stackView.addArrangedSubview(makeLabel(withText: $0)) }
+    }
+    
+    private func makeLabel(withText text: String) -> UILabel {
+        let label: UILabel = {
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = text
+            label.numberOfLines = 0
+            label.font = UIFont(name: "SFProText-Regular", size: 17)
+            return label
         }()
-        
-        let header: UIView = {
-            let header = UIView()
-            header.addSubview(title)
-            
-            return header
-        }()
-        
-        NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: header.topAnchor, constant: 22),
-            title.leadingAnchor.constraint(equalTo: header.leadingAnchor),
-            title.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -16),
-        ])
-        
-        return header
+        return label
     }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        false
-    }
-}
-//MARK: - UITableViewDataSource
-extension InfoViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Constant.habitSteps.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: InfoTableViewCell.id, for: indexPath) as! InfoTableViewCell
-        cell.label.text = Constant.habitSteps[indexPath.row]
-        
-        return cell
-    }
-    
-    
 }

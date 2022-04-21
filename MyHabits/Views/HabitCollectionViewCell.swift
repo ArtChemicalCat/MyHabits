@@ -23,6 +23,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
 //MARK: - Views
     let nameLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 2
         label.font = .systemFont(ofSize: 17, weight: .semibold)
         
         return label
@@ -74,11 +75,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -103),
             
             timeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
             timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
-            counterLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 20),
+            counterLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 92),
             counterLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
             checkmarkView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -88,6 +90,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
             contentView.bottomAnchor.constraint(equalTo: counterLabel.bottomAnchor, constant: 20)
         ])
     }
+    
 //MARK: - Actions
     @objc private func checkHabit() {
         guard let habit = habit, !habit.isAlreadyTakenToday else { return }

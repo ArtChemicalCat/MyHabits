@@ -8,7 +8,9 @@
 import UIKit
 
 class HabitViewController: UIViewController {
+    
     var habitName: String?
+    
 //MARK: - Views
     private let habitNameLabel: UILabel = {
         let label = UILabel()
@@ -48,6 +50,14 @@ class HabitViewController: UIViewController {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
+        label.text = "Каждый день в "
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+        return label
+    }()
+    
+    private let coloredTimeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(named: "purple")
         label.font = .systemFont(ofSize: 17, weight: .regular)
         return label
     }()
@@ -80,7 +90,7 @@ class HabitViewController: UIViewController {
     func configureController() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveNewHabit))
         
-        [habitNameLabel, habitNameTextField, colorLabel, colorButton, timeLabel, timePicker]
+        [habitNameLabel, habitNameTextField, colorLabel, colorButton, timeLabel, coloredTimeLabel, timePicker]
             .forEach {
                 $0.translatesAutoresizingMaskIntoConstraints = false
                 view.addSubview($0)
@@ -92,6 +102,7 @@ class HabitViewController: UIViewController {
             
             habitNameTextField.topAnchor.constraint(equalTo: habitNameLabel.bottomAnchor, constant: 7),
             habitNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            habitNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -65),
             
             colorLabel.topAnchor.constraint(equalTo: habitNameTextField.bottomAnchor, constant: 15),
             colorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -103,6 +114,9 @@ class HabitViewController: UIViewController {
             
             timeLabel.topAnchor.constraint(equalTo: colorButton.bottomAnchor, constant: 40),
             timeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            
+            coloredTimeLabel.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor),
+            coloredTimeLabel.centerYAnchor.constraint(equalTo: timeLabel.centerYAnchor),
             
             timePicker.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15),
             timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -117,17 +131,18 @@ class HabitViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "HH:mm"
-        timeLabel.text = "Каждый день в \(formatter.string(from: picker.date))"
+        coloredTimeLabel.text = "\(formatter.string(from: picker.date))"
     }
     
     @objc private func saveNewHabit() {
-        if let name = habitName {
+        guard let name = habitName,
+              name.count != 0 else { return }
             let newHabit = Habit(name: name,
                                  date: timePicker.date,
                                  color: colorButton.tintColor ?? .black)
             HabitsStore.shared.habits.append(newHabit)
             navigationController?.popViewController(animated: true)
-        }
+        
     }
     
     @objc private func chooseColor() {
